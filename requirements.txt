@@ -1,0 +1,4 @@
+chardet==5.2.0
+numpy==2.2.2
+pandas==2.2.3
+ydata_profiling==4.12.2
