@@ -134,8 +134,6 @@ class DataPreprocessingClass:
             input_df (pd.DataFrame): 入力データ
             output_filename(Optional[str], optional): 出力するファイル名. Defaults to None.
         """
-        # print(input_df.info())
-
         if output_filename:
             # infoの出力をキャプチャ
             buffer = io.StringIO()
@@ -163,3 +161,28 @@ class DataPreprocessingClass:
         profile = ProfileReport(input_df, title=title)
         profile.to_file(self.output_path / output_filename)
         print(f"結果を{output_filename}にhtmlファイルとして保存しています。")
+
+    def fillna_by_specific_value(self, input_df: pd.DataFrame, value: Any, target_cols: Optional[list[str]]=None, output_filename: Optional[str]=None) -> pd.DataFrame:
+        """指定した値で欠損値を補間する
+
+        Args:
+            input_df (pd.DataFrame): 入力データ
+            value (Any): 欠損を補間する値
+            target_cols (Optional[list[str]], optional): 対象とする列名のリスト. Defaults to None.
+            output_filename (Optional[str], optional): 補間後のデータの保存先ファイル名. Defaults to None.
+
+        Returns:
+            pd.DataFrame: 補間後のデータ
+        """
+        if target_cols:
+            output_df = input_df
+
+
+        # 結果の保存
+        if output_filename:
+            self.save_dataframe(
+                output_df=output_df,
+                output_filename=output_filename
+            )
+
+        return output_df
